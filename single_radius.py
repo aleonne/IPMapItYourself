@@ -36,7 +36,7 @@ class SingleRadius():
         self.ixp_city_set_sizes = []
         self.peeringfac_city_set_sizes = []
         self.pyt = pytricia.PyTricia()
-        self.locator = Nominatim(user_agent="kedar")
+        self.locator = Nominatim(user_agent="alison", scheme='http')
 
         
         self.remote = 'https://stat.ripe.net/data/asn-neighbours/data.json'
@@ -71,6 +71,7 @@ class SingleRadius():
         # fetch from remote if data does not exist in local cache 
         if asn not in self.as_neighbour: 
             print(f'No cache for ASN {asn}. Fetching from remote...')
+            print(asn)
             self.as_neighbour[asn] = self.fetch_as_neighbours(asn)
         
         return self.as_neighbour[asn]
